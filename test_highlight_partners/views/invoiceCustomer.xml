@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--    # Add necessary XML files for the module structure.-->
+    <record id="view_move_form_ref_inherit" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.partner_ref</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="highlight_partner" string="highlight partner"/>
+            </xpath>
+
+            <xpath expr="//field[@name='highlight_partner']" position="after">
+                   <button name="get_highlighted_partners"
+                        type="object"
+                        string="Show Highlighted Partners"
+                        class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
