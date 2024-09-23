@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="view_order_form_inherited_notification" model="ir.ui.view">
+      <field name="name">sale.order.form.inherit.notification</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>  <!-- Correct inheritance -->
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='date_order']" position="after">
+          <field name="invoiced_notification_sent"/>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

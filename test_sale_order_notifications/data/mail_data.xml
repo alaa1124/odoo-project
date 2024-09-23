@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+      <record forcecreate="True" id="ir_cron_sale_order_invoiced_notification" model="ir.cron">
+          <field name="name">Sale Order Invoiced Notification</field>
+          <field name="model_id" ref="sale.model_sale_order"/>
+          <field name="state">code</field>
+          <field name="code">model.send_invoiced_sale_order_notifications()</field>
+          <field name="user_id" ref="base.user_root"/>
+          <field name="interval_number">1</field>
+          <field name="interval_type">days</field>  <!-- بدل "minutes" -->
+          <field name="numbercall">-1</field>
+      </record>
+
+<record id="mail_template_sale_order_invoiced1" model="mail.template">
+    <field name="name">Sale Order Invoiced Notification</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="subject">Sale Order Odoo System - Sales has been invoiced</field>
+    <field name="email_from">{{ object.company_id.email or user.email }}</field>
+    <field name="email_to">{{ object.user_id.partner_id.email }}</field>
+    <field name="auto_delete" eval="True"/>
+    <field name="body_html" type="html">
+      <div>
+        <p>Dear {{object.user_id.name}},</p>
+        <p>Sale Order <b><t t-out="object.name"/></b> has been invoiced. Here are the details:</p>
+        <ul>
+          <li><b>Order Number:</b> <t t-out="object.name"/></li>
+          <li><b>Total:</b> <t t-out="object.amount_total"/> ${object.currency_id.symbol}</li>
+          <li><b>Invoice Status:</b> Invoiced</li>
+        </ul>
+        <p>Thank you.</p>
+      </div>
+    </field>
+</record>
+
+  </data>
+</odoo>
