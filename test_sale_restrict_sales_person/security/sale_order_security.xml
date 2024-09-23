@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="group_sale_manager" model="res.groups">
+        <field name="name">Sales Manager</field>
+        <field name="category_id" ref="base.module_category_sales"/>
+    </record>
+
+    <record id="group_salesperson" model="res.groups">
+        <field name="name">Salesperson</field>
+        <field name="category_id" ref="base.module_category_sales"/>
+    </record>
+
+<record id="sale_order_manager_rule" model="ir.rule">
+    <field name="name">Sale Order Manager Rule</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="groups" eval="[(4, ref('so_po_edits.group_sale_manager'))]"/>
+    <field name="domain_force">[(1, '=', 1)]</field>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+</record>
+
+
+<record id="sale_order_salesperson_rule" model="ir.rule">
+    <field name="name">Sale Order Salesperson Rule</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="groups" eval="[(4, ref('so_po_edits.group_salesperson'))]"/>
+    <field name="domain_force">[('team_id', 'in', [user.sale_team_id.id])]</field>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+</record>
+
+
+</odoo>
