@@ -46,18 +46,4 @@ Create an automated action to send an email to the salesperson when a sale order
 - Details:
 	- The email should include key sale order details like the sale order number, total, and invoice status.
 - Module name: test_sale_order_notifications
-### Discussion 
-#### 1. Odoo UI/UX
-Question: Do you think a multi-company theme is possible in Odoo without compromising performance or user experience? Discuss with reference to:
-- Primary and secondary color schemes.
-- Background image customization for each company.
-#### 2. Odoo Environment
-Question: Explain the advantages and disadvantages of the following Odoo deployment environments:
-- Server installation on Linux (with VM considerations).
-- Server installation on Windows (with VM considerations).
-- Docker containers.
-- Odoo.sh platform.
-#### 3. Odoo Version Compatibility
-Question: Can a module developed for Odoo 14 work without issues in Odoo 15? Focus on the following:
-- PDF report customization (SCSS, JS).
-- Payment transfer functionality.
+
