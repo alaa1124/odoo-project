@@ -1,0 +1,40 @@
+<odoo>
+    <record id="view_chatgpt_module_form" model="ir.ui.view">
+        <field name="name">chatgpt.module.form</field>
+        <field name="model">chatgpt.module</field>
+        <field name="arch" type="xml">
+            <form string="ChatGPT Integration">
+                <sheet>
+                    <group>
+                        <field name="question"/>
+                        <field name="answer" readonly="1"/>
+                    </group>
+                    <button name="compute_answer_action" type="object" string="Get Answer" class="btn-primary"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_chatgpt_module_tree" model="ir.ui.view">
+        <field name="name">chatgpt.module.tree</field>
+        <field name="model">chatgpt.module</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="question"/>
+                <field name="answer" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_chatgpt_module" model="ir.actions.act_window">
+        <field name="name">ChatGPT</field>
+        <field name="res_model">chatgpt.module</field>
+        <field name="view_mode">form,tree</field>
+    </record>
+
+    <menuitem id="menu_chatgpt_root" name="Chat"/>
+    <menuitem id="menu_chatgpt_module" name="Ask Chat" parent="menu_chatgpt_root" action="action_chatgpt_module"
+              sequence="10"/>
+</odoo>
+
