@@ -3,6 +3,12 @@ import json
 import re
 from openai import OpenAI
 import time
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
+
 class ChatGPTModule(models.Model):
     _name = 'chatgpt.module'
     _description = 'ChatGPT Integration'
@@ -10,7 +16,7 @@ class ChatGPTModule(models.Model):
     question = fields.Text(string="Question", required=True)
     answer = fields.Text(string="Answer", readonly=True)
 
-    client = OpenAI(api_key="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")
+    client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
     def clean_code_response(self, raw_response):
         cleaned = re.sub(r"```[\w]*", "", raw_response, flags=re.MULTILINE)
